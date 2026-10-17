@@ -1,0 +1,64 @@
+{
+    "name": "ramon/mail-reply",
+    "description": "Reply-by-email for Flarum: unique per-user/per-discussion Reply-To addresses plus inbound email processing (parse, strip quotes/signatures, post reply).",
+    "keywords": [
+        "flarum",
+        "mail",
+        "reply-by-email",
+        "inbound-email"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ramon Guilherme",
+            "email": "ramon@ramonguilherme.com.br",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "flarum/core": "^2.0.0",
+        "willdurand/email-reply-parser": "^2.9 || ^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5 || ^13.2.0",
+        "mockery/mockery": "^1.6",
+        "phpstan/phpstan": "^2.2",
+        "webklex/php-imap": "^6.2",
+        "roave/security-advisories": "dev-latest"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "analyse": "phpstan analyse"
+    },
+    "suggest": {
+        "webklex/php-imap": "Required only for IMAP polling (mail-reply:fetch); not needed when using a webhook provider like Mailgun or Postmark."
+    },
+    "autoload": {
+        "psr-4": {
+            "Ramon\\MailReply\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ramon\\MailReply\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        },
+        "flarum-extension": {
+            "title": "Mail Reply",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-reply",
+                "backgroundColor": "#2e7d32",
+                "color": "#fff"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
