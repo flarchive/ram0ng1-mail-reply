@@ -1,0 +1,45 @@
+.MailReplyBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--control-bg, rgba(0, 0, 0, 0.06));
+  color: var(--muted-color, #888);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+
+  .icon {
+    font-size: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .MailReplyBadge-text {
+      display: none;
+    }
+    padding: 2px 6px;
+  }
+}
+
+// O Canela ordena o cabeçalho do post com `order` (nome em 1, data em 5) e
+// itens sem ordem caem antes do nome: o selo vai logo depois dos nomes, como
+// o título do usuário do próprio tema, e empurra a data para a direita.
+.CanelaTopic .Post .Post-header {
+  .item-mailReplyBadge {
+    order: 2;
+    margin-right: auto;
+  }
+
+  .item-mailReplyBadge:has(~ li.item-canelaUserTitle) {
+    margin-right: 0;
+  }
+
+  > ul > li.item-user:has(~ li.item-mailReplyBadge),
+  > ul > li.item-canelaNames:has(~ li.item-mailReplyBadge) {
+    margin-right: 0;
+  }
+}

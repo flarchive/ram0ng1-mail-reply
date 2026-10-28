@@ -1,0 +1,11 @@
+BC: bc/*
+seguranca: seguranca/*
+melhoria: ['melhoria/*', 'feat/*']
+correcao: ['correcao/*', 'conserto/*', 'ajuste/*', 'fix/*']
+dependencias: dependencias/*
+documentacao: ['docs/*', 'documentacao/*']
+manutencao: ['manutencao/*', 'ci/*', 'chore/*']
+performance: ['performance/*', 'perf/*']
+traducao: traducao/*
+refatoracao: ['refatoracao/*', 'refactor/*']
+'pular changelog': release/*

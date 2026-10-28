@@ -1,0 +1,108 @@
+{
+    "name": "ramon/mail-reply",
+    "description": "Reply-by-email for Flarum: unique per-user/per-discussion Reply-To addresses plus inbound email processing (parse, strip quotes/signatures, post reply).",
+    "keywords": [
+        "flarum",
+        "mail",
+        "reply-by-email",
+        "inbound-email"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "homepage": "https://github.com/ram0ng1/mail-reply",
+    "authors": [
+        {
+            "name": "Ramon Guilherme",
+            "email": "ramon@ramonguilherme.com.br",
+            "homepage": "https://ramonguilherme.com.br",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/ram0ng1/mail-reply/issues",
+        "source": "https://github.com/ram0ng1/mail-reply"
+    },
+    "require": {
+        "php": "^8.3",
+        "ext-mbstring": "*",
+        "flarum/core": "^2.0.0",
+        "willdurand/email-reply-parser": "^2.9 || ^3.0"
+    },
+    "require-dev": {
+        "flarum/mentions": "^2.0",
+        "flarum/phpstan": "^2.0",
+        "flarum/tags": "^2.0",
+        "flarum/testing": "^2.0",
+        "mockery/mockery": "^1.6",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^11.5 || ^12.5.22 || ^13.2.0",
+        "roave/security-advisories": "dev-latest",
+        "webklex/php-imap": "^6.2"
+    },
+    "suggest": {
+        "ext-sodium": "Required to store the HMAC key, IMAP password and Mailgun signing key encrypted.",
+        "webklex/php-imap": "Required only for IMAP polling (mail-reply:fetch); not needed when using the webhook or the pipe script.",
+        "fof/redis": "Runs IMAP polling inside queue:work instead of the scheduler."
+    },
+    "autoload": {
+        "psr-4": {
+            "Ramon\\MailReply\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ramon\\MailReply\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Mail Reply",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-reply",
+                "backgroundColor": "#2e7d32",
+                "color": "#fff"
+            },
+            "optional-dependencies": [
+                "fof/byobu",
+                "flarum/mentions",
+                "flarum/subscriptions"
+            ]
+        },
+        "flarum-cli": {
+            "modules": {
+                "admin": true,
+                "forum": true,
+                "js": true,
+                "jsCommon": true,
+                "css": true,
+                "locale": true,
+                "typescript": true,
+                "backendTesting": true
+            }
+        }
+    },
+    "scripts": {
+        "analyse:phpstan": "phpstan analyse --memory-limit=2G",
+        "clear-cache:phpstan": "phpstan clear-result-cache",
+        "test": [
+            "@test:unit",
+            "@test:integration"
+        ],
+        "test:unit": "phpunit -c tests/phpunit.unit.xml",
+        "test:integration": [
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit -c tests/phpunit.integration.xml"
+        ],
+        "test:setup": "@php tests/integration/setup.php"
+    },
+    "scripts-descriptions": {
+        "analyse:phpstan": "Run static analysis",
+        "test": "Runs all tests.",
+        "test:unit": "Runs all unit tests.",
+        "test:integration": "Runs all integration tests.",
+        "test:setup": "Sets up a database for use with integration tests. Execute this only once."
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

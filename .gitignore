@@ -1,0 +1,9 @@
+/vendor
+composer.lock
+.idea
+.vscode
+node_modules
+CLAUDE.md
+.phpunit.cache
+/tests/integration/tmp
+/tests/hosting/results
